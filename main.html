@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Application</title>
     <link rel="stylesheet" href="main.css">  </head>
-  <body>
-    <div calss="weather-container">
-      <div class="search-container">
+<body>
+<div calss="weather-container">
+    <div class="search-container">
         <div class="search-bar">
-         <form>
-            <input
-              type="text"
-              placeholder="search location"
-              id="search-input"
-            />
-            <button class="search-button">Search</button>
-          </form>
+            <form>
+                <input
+                        type="text"
+                        placeholder="search location"
+                        id="search-input"
+                />
+                <button class="search-button">Search</button>
+            </form>
         </div>
         <div class="dropdown">
-          <select id="location" name="location-dropdown">
-            <option>--Select--</option>
-            <option value="hyd">Hyderabad</option>
-          </select>
+            <select id="location" name="location-dropdown">
+                <option>--Select--</option>
+                <option value="hyd">Hyderabad</option>
+            </select>
         </div>
-      </div>
-      <div calss="weather-view">
+    </div>
+    <div id="suggestions" class="suggestions-overlay"></div>
+    <div calss="weather-view">
         <div class="pin">pin</div>
         <div class="current-weather">
-          <div class="current-weather-view">
-            <h1>Location</h1>
-            <div class="location-date">
-                <span>location</span>
-                <span>Date</span>
+            <div class="current-weather-view">
+                <h1><span id="loc">Location</span></h1>
+                <div class="location-date">
+                    <label>Date : </label>
+                    <span id="date">Date</span>
+                    <label>Time : </label>
+                    <span id="time">Time</span>
+                    <label>Rain : </label>
+                    <span id="rain">Time</span>
+                    <label>Day : </label>
+                    <span id="day">Time</span>
+                    <label> Relative Humidity : </label>
+                    <span id="revh">Time</span>
+                    <label>Wind Speed : </label>
+                    <span id="wind">Time</span>
+                </div>
+                <div class="temparatere">
+                    <label>Temparature : </label>
+                    <span id="temparatere">40* C</span>
+<!--                    <span>Image</span>-->
+                </div>
             </div>
-            <div class="temparatere">
-                <span>40* C</span>
-                <span>Image</span>
-            </div>
-          </div>
-          <div class="day-wise-info"></div>
+            <div class="day-wise-info"></div>
         </div>
-      </div>
     </div>
+</div>
 
-    <script src="./script.js"></script>
-  </body>
+<script src="./script.js"></script>
+</body>
 </html>
