@@ -14,9 +14,9 @@
     align-items: center;
 }
 .search-bar input{
-padding: 10px;
-border-radius: 5px;
-border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .search-button {
@@ -53,7 +53,7 @@ border: 1px solid #ccc;
 .current-weather{
     display: flex;
     justify-content: space-between;
-    
+
 
 }
 .current-weather-view{
@@ -72,5 +72,43 @@ border: 1px solid #ccc;
     background-color: rgb(170, 138, 96);
 }
 
+.suggestions-overlay{
+    /*border : 1px solid #cccccc;*/
+    /*background-color: aliceblue;*/
+    margin:20px;
+    text-align: center;
+    display:inline-list-item;
+    /*max-width: fit-content;*/
+}
+.suggestions-overlay div{
+    border : 0.0001px solid bisque;
+    border-color: beige;
+    /*background-color: aliceblue;*/
+    /*margin:20px;*/
+    /*text-align: center;*/
+    /*display:list-item;*/
+}
+/*!* The suggestions div will be positioned as an overlay *!*/
+/*.suggestions-overlay {*/
+/*    position: absolute;*/
+/*    !*top: 100%; !* Positions it just below the input field *!*!*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    background-color: white;*/
+/*    border: 1px solid #ccc;*/
+/*    z-index: 1000;*/
+/*    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
+/*!* Style for suggestion items *!*/
+/*.suggestions-overlay div {*/
+/*    padding: 10px;*/
+/*    text-align: center;*/
+/*    cursor: pointer;*/
+/*}*/
 
+/*.suggestions-overlay div:hover {*/
+/*    background-color: #f0f0f0;*/
+/*}*/
