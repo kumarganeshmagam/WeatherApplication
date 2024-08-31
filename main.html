@@ -20,38 +20,62 @@
         </div>
         <div class="dropdown">
             <select id="location" name="location-dropdown">
-                <option>--Select--</option>
-                <option value="hyd">Hyderabad</option>
+
             </select>
         </div>
     </div>
     <div id="suggestions" class="suggestions-overlay"></div>
     <div calss="weather-view">
-        <div class="pin">pin</div>
+        <div class="pin">
+            <button id="pin">Pin</button>
+            <button id ="unpin">UnPin</button>
+        </div>
         <div class="current-weather">
             <div class="current-weather-view">
-                <h1><span id="loc">Location</span></h1>
+                <h1 id="loc">Location</h1>
                 <div class="location-date">
-                    <label>Date : </label>
-                    <span id="date">Date</span>
-                    <label>Time : </label>
-                    <span id="time">Time</span>
-                    <label>Rain : </label>
-                    <span id="rain">Time</span>
-                    <label>Day : </label>
-                    <span id="day">Time</span>
-                    <label> Relative Humidity : </label>
-                    <span id="revh">Time</span>
-                    <label>Wind Speed : </label>
-                    <span id="wind">Time</span>
+                    <div class="info-item">
+                        <label>Date:</label>
+                        <span id="date">Date</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Time:</label>
+                        <span id="time">Time</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Rain:</label>
+                        <span id="rain">0mm</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Day:</label>
+                        <span id="day">Morning</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Relative Humidity:</label>
+                        <span id="revh">89%</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Wind Speed:</label>
+                        <span id="wind">14.7 km/h</span>
+                    </div>
                 </div>
-                <div class="temparatere">
-                    <label>Temparature : </label>
-                    <span id="temparatere">40* C</span>
-<!--                    <span>Image</span>-->
+                <div class="temperature">
+                    <label>Temperature:</label>
+                    <span id="temperature">24.2°C</span>
+                    <!-- Optional: Add an image here -->
+                    <!-- <img src="path/to/image.jpg" alt="Temperature Icon"> -->
                 </div>
             </div>
-            <div class="day-wise-info"></div>
+            <div class="day-wise-info">
+                <div class="input-radio">
+                    <label>
+                        <input type="radio" checked name="option" value="hourly"> Hourly
+                    </label>
+                    <label>
+                        <input type="radio" name="option" value="day-wise"> Day Wise
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 </div>
