@@ -68,9 +68,19 @@
     width: 50%;
     height: auto;
     margin: 10px;
-
-    background-color: rgb(170, 138, 96);
+    border-radius: 10px;
+    background-color: antiquewhite;
 }
+.day-wise-info .input-radio{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 35px;
+    margin-top: 10px;
+}
+.table_wise{
+    margin: 25px
+}
+
 
 .suggestions-overlay{
     /*border : 1px solid #cccccc;*/
