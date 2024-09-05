@@ -1,3 +1,4 @@
+
 let pinnedAreas=[];
 let currentArea="";
 let currentLatitude;
@@ -6,18 +7,46 @@ let areaList = {};
 let filterValue = 'hourly';
 let currentName="";
 let currentData = '';
-let baseUrl = "https://api.open-meteo.com/v1/forecast?"
-let params = "&current=relative_humidity_2m,is_day,rain,temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
+let weatherCodeData;
+    let baseUrl = "https://api.open-meteo.com/v1/forecast?"
+let params = "&current=relative_humidity_2m,is_day,rain,temperature_2m,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code"
 let daywisedata = "&past_days=15";
 class Area {
     // Define methods for Area class
-    async create(currentName, currentLatitude, currentLongitude) {
+    async create(currentName, currentLatitude, currentLongitude,areaName) {
         // Example method implementation
         return {
             name: currentName,
             latitude: currentLatitude,
-            longitude: currentLongitude
+            longitude: currentLongitude,
+            areaName:areaName
         };
+    }
+}
+
+async function getWeatherDescription(code) {
+    if(!weatherCodeData) {
+        const response =  await fetch('weather_codes.json');
+        const data = await response.json()
+        const weatherCodes = data;
+        console.log(weatherCodes);
+        weatherCodeData = weatherCodes
+        const weatherCode = weatherCodes.weather_codes.find((codeObj) => codeObj.code === code);
+        if (weatherCode) {
+            console.log(weatherCode.description);
+            return weatherCode.description;
+        } else {
+            return 'Unknown';
+        }
+    }else{
+        const weatherCodes = weatherCodeData;
+        const weatherCode = weatherCodes.weather_codes.find((codeObj) => codeObj.code === code);
+        if (weatherCode) {
+            console.log(weatherCode.description);
+            return weatherCode.description;
+        } else {
+            return 'Unknown';
+        }
     }
 }
 
@@ -62,6 +91,7 @@ document.getElementById('search-input').addEventListener('input', async function
 
 //Event Handler for clicking on suggestions
 document.getElementById('suggestions').addEventListener('click', async function(e) {
+    console.log(e.target.dataset);
     if (e.target.dataset.lat && e.target.dataset.lon) {
         const lat = e.target.getAttribute('data-lat');
         const lon = e.target.getAttribute('data-lon');
@@ -75,7 +105,6 @@ document.getElementById('suggestions').addEventListener('click', async function(
         try {
             currentData = await getResponse(url);
             currentName = await getName(currentLatitude, currentLongitude);
-
             console.log(currentName);
             await populateData();
             await refreshDropdown();
@@ -114,6 +143,7 @@ dropdown.addEventListener('change', async function(event){
     if(pinnedAreas.includes(selectedValue)){
         currentName = selectedValue;
         let area = areaList[currentName];
+        currentArea = area.areaName;
         let url = baseUrl + "latitude=" + area.latitude + "&longitude=" + area.longitude + params;
         currentData = await getResponse(url);
         await populateData();
@@ -173,7 +203,7 @@ async function populateData(){
     let name = currentName;
     let data = currentData;
     let location=document.getElementById('loc')
-    location.innerHTML=name;
+    location.innerHTML=currentArea;
     // document.append(location);
     let temp=document.getElementById('temperature');
     temp.innerHTML=data.current.temperature_2m+data.current_units.temperature_2m;
@@ -188,11 +218,14 @@ async function populateData(){
     let date= document.getElementById('date');
     date.innerHTML=dateInTimeZone.split(',')[0];
 
+    let zone = document.getElementById('timeZone');
+    zone.innerHTML=timeZone;
+
     let time = document.getElementById('time');
     time.innerHTML=dateInTimeZone.split(',')[1];
 
     let day = document.getElementById('day');
-    day.innerHTML = data.current.is_day=0 ? "Evening" : "Morning";
+    day.innerHTML = data.current.is_day=1 ? "Evening" : "Morning";
 
     let wind = document.getElementById('wind');
     wind.innerHTML = data.current.wind_speed_10m+data.current_units.wind_speed_10m;
@@ -204,6 +237,9 @@ async function populateData(){
     revh.innerHTML = data.current.relative_humidity_2m +data.current_units.relative_humidity_2m;
     console.log(data);
 
+    let weather = document.getElementById('weather');
+    let desc = await getWeatherDescription(data.current.weather_code);
+    weather.innerHTML = desc;
 
     // Right side page
    await displayTable();
@@ -223,7 +259,7 @@ async function displayTable(){
     table.className='table_wise';
     let header = table.createTHead();
     let headerRow = header.insertRow(0);
-    let headers = ['Time', 'Temperature','Wind Speed', 'Humidity'];
+    let headers = ['Time', 'Temperature','Wind Speed', 'Humidity', 'Weather'];
     headers.forEach(function(headerText) {
         var th = document.createElement('th');
         th.appendChild(document.createTextNode(headerText));
@@ -233,6 +269,7 @@ async function displayTable(){
     let templist = data.hourly.relative_humidity_2m;
     let windlist = data.hourly.temperature_2m;
     let humidlist = data.hourly.wind_speed_10m;
+    let weatherlist = data.hourly.weather_code;
 
     for (let i = 0; i < 16; i++) {
         let row = table.insertRow();
@@ -240,11 +277,14 @@ async function displayTable(){
         let cell2 = row.insertCell();
         let cell3 = row.insertCell();
         let cell4 = row.insertCell();
+        let cell5 = row.insertCell();
 
+        console.log(await getWeatherDescription(weatherlist[i]), i,weatherlist[i]);
         cell1.appendChild(document.createTextNode(await getDateTime(timelist[i]+'Z',filterValue)));
         cell2.appendChild(document.createTextNode(templist[i]+data.hourly_units.relative_humidity_2m));
         cell3.appendChild(document.createTextNode(windlist[i]+data.hourly_units.temperature_2m));
         cell4.appendChild(document.createTextNode(humidlist[i]+data.hourly_units.wind_speed_10m));
+        cell5.appendChild(document.createTextNode(await getWeatherDescription(weatherlist[i])));
     }
     day_wise.appendChild(table);
 }
@@ -266,14 +306,14 @@ async function PinOrUnpinDropDown(operation) {
     console.log(operation);
     if(operation === "pin"){
         let area = new Area();
-        let obj=await area.create(currentName, currentLatitude, currentLongitude);
+        let obj=await area.create(currentName, currentLatitude, currentLongitude,currentArea);
         pinnedAreas.push(currentName);
         console.log(pinnedAreas);
         areaList[currentName]=obj;
         console.log(areaList);
     }else if(operation === 'unpin'){
         //remove the currentName and its area object from existing lists
-        pinnedAreas.pop(currentName);
+        pinnedAreas = pinnedAreas.filter(area => area !== currentName);
         delete areaList[currentName];
     }
     await refreshDropdown();
@@ -286,6 +326,9 @@ async function getName(latitude, longitude){
 
         const address = data.address;
         currentName = address.city || address.town || address.village || 'Not Found';
+        console.log(address);
+        console.log(data);
+        currentArea= currentName+ ",  " + address.state + ", "+ address.country;
         return address.city || address.town || address.village || 'City not found';
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -314,6 +357,17 @@ async function refreshDropdown(){
             dropdown.appendChild(option);
         }
     });
+    let pinButton = document.getElementById('pin');
+    let unpinButton = document.getElementById('unpin');
+
+    pinButton.style.display = 'block';
+    unpinButton.style.display = 'none';
+
+    if (pinnedAreas.includes(currentName)) {
+        pinButton.style.display = 'none';
+        unpinButton.style.display = 'block';
+    }
+
 }
 
 async function getResponse(url){
@@ -322,6 +376,7 @@ async function getResponse(url){
     console.log(data);
     return data;
 }
+
 
 async function getLocation(){
     if("geolocation" in navigator){
