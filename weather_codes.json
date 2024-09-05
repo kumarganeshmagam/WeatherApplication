@@ -1,0 +1,128 @@
+{
+  "weather_codes": [
+    {
+      "code": 0,
+      "description": "Clear Sky"
+    },
+    {
+      "code": 1,
+      "description": "Mainly Clear"
+    },
+    {
+      "code": 2,
+      "description": "Partly Cloudy"
+    },
+    {
+      "code": 3,
+      "description": "Overcast"
+    },
+    {
+      "code": 45,
+      "description": "Fog"
+    },
+    {
+      "code": 48,
+      "description": "Depositing Rime Fog"
+    },
+    {
+      "code": 51,
+      "description": "Light Drizzle"
+    },
+    {
+      "code": 53,
+      "description": "Moderate Drizzle"
+    },
+    {
+      "code": 56,
+      "description": "Light Freezing Drizzle"
+    },
+    {
+      "code": 57,
+      "description": "Dense Freezing Drizzle"
+    },
+    {
+      "code": 61,
+      "description": "Light Rain"
+    },
+    {
+      "code": 63,
+      "description": "Moderate Rain"
+    },
+    {
+      "code": 65,
+      "description": "Heavy Rain"
+    },
+    {
+      "code": 66,
+      "description": "Light Freezing Rain"
+    },
+    {
+      "code": 67,
+      "description": "Dense Freezing Rain"
+    },
+    {
+      "code": 71,
+      "description": "Light Snow"
+    },
+    {
+      "code": 73,
+      "description": "Moderate Snow"
+    },
+    {
+      "code": 75,
+      "description": "Heavy Snow"
+    },
+    {
+      "code": 77,
+      "description": "Snow Grains"
+    },
+    {
+      "code": 80,
+      "description": "Light Rain Showers"
+    },
+    {
+      "code": 81,
+      "description": "Moderate Rain Showers"
+    },
+    {
+      "code": 82,
+      "description": "Heavy Rain Showers"
+    },
+    {
+      "code": 85,
+      "description": "Light Snow Showers"
+    },
+    {
+      "code": 86,
+      "description": "Moderate Snow Showers"
+    },
+    {
+      "code": 87,
+      "description": "Heavy Snow Showers"
+    },
+    {
+      "code": 95,
+      "description": "Thunderstorm moderate hail"
+    },
+    {
+      "code": 96,
+      "description": "Thunderstorm with Slight Hail"
+    },
+    {
+      "code": 97,
+      "description": "Thunderstorm with Moderate Hail"
+    },
+    {
+      "code": 98,
+      "description": "Thunderstorm with Heavy Hail"
+    },
+    {
+      "code": 99,
+      "description": "Thunderstorm with Very Heavy Hail"
+    },
+    {
+      "code": "*",
+      "description": "Hail"
+    }
+  ]
+}
