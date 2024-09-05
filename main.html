@@ -6,8 +6,12 @@
     <title>Weather Application</title>
     <link rel="stylesheet" href="main.css">  </head>
 <body>
-<div calss="weather-container">
+<div class="weather-container">
     <div class="search-container">
+        <div class="logo">
+<!--            <img class='logos' src="img.png"/>-->
+            <h1>CLIME <i>the weather app</i></h1>
+        </div>
         <div class="search-bar">
             <form>
                 <input
@@ -25,18 +29,26 @@
         </div>
     </div>
     <div id="suggestions" class="suggestions-overlay"></div>
-    <div calss="weather-view">
+    <div class="weather-view">
         <div class="pin">
-            <button id="pin">Pin</button>
-            <button id ="unpin">UnPin</button>
+            <button id="pin" class="pinned">Pin</button>
+            <button id ="unpin" class = "unpinned">UnPin</button>
         </div>
         <div class="current-weather">
             <div class="current-weather-view">
-                <h1 id="loc">Location</h1>
+                <h1 style="align-content: center" id="loc">Location</h1>
                 <div class="location-date">
                     <div class="info-item">
                         <label>Date:</label>
                         <span id="date">Date</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Zone:</label>
+                        <span id="timeZone">timeZone</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Day:</label>
+                        <span id="day">Morning</span>
                     </div>
                     <div class="info-item">
                         <label>Time:</label>
@@ -47,23 +59,21 @@
                         <span id="rain">0mm</span>
                     </div>
                     <div class="info-item">
-                        <label>Day:</label>
-                        <span id="day">Morning</span>
-                    </div>
-                    <div class="info-item">
                         <label>Relative Humidity:</label>
                         <span id="revh">89%</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Weather:</label>
+                        <span id="weather">Sunny Day</span>
                     </div>
                     <div class="info-item">
                         <label>Wind Speed:</label>
                         <span id="wind">14.7 km/h</span>
                     </div>
-                </div>
-                <div class="temperature">
-                    <label>Temperature:</label>
-                    <span id="temperature">24.2°C</span>
-                    <!-- Optional: Add an image here -->
-                    <!-- <img src="path/to/image.jpg" alt="Temperature Icon"> -->
+                    <div class="info-item">
+                        <label>Temperature:</label>
+                        <span id="temperature">24.2°C</span>
+                    </div>
                 </div>
             </div>
             <div class="day-wise-info">
