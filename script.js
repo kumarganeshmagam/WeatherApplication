@@ -192,7 +192,7 @@ async function populateData(){
     time.innerHTML=dateInTimeZone.split(',')[1];
 
     let day = document.getElementById('day');
-    day.innerHTML = data.current.is_day=0 ? "Evening" : "Morning";
+    day.innerHTML = data.current.is_day === 0 ? "Evening" : "Morning";
 
     let wind = document.getElementById('wind');
     wind.innerHTML = data.current.wind_speed_10m+data.current_units.wind_speed_10m;
