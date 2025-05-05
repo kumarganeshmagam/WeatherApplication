@@ -230,9 +230,9 @@ async function displayTable(){
         headerRow.appendChild(th);
     });
     let timelist = data.hourly.time;
-    let templist = data.hourly.relative_humidity_2m;
-    let windlist = data.hourly.temperature_2m;
-    let humidlist = data.hourly.wind_speed_10m;
+    let templist = data.hourly.temperature_2m;
+    let windlist = data.hourly.wind_speed_10m;
+    let humidlist = data.hourly.relative_humidity_2m;
 
     for (let i = 0; i < 16; i++) {
         let row = table.insertRow();
