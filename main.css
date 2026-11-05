@@ -101,6 +101,8 @@ body {
     margin-left: 5px;
     margin-right: 5px;
     border-radius: 10px;
+    max-height: 300px;
+    overflow: auto ;
     /*background: linear-gradient(196deg, rgba(228,230,233,1) 19%, rgba(55,200,242,1) 36%, rgba(188,217,235,1) 83%);*/
 
     /*background-image: linear-gradient(to bottom, #87CEEB 0%, #6495ED 20%, #4682B4 40%, #3B5998 60%, #2F4F7F 80%, #2F4F7F 100%);*/
@@ -113,6 +115,7 @@ body {
     margin-right: 35px;
     margin-top: 20px;
 }
+
 .table_wise{
     margin-left: 25px;
     margin-right: 25px;

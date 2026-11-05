@@ -7,7 +7,7 @@ let areaList = {};
 let filterValue = 'hourly';
 let currentName="";
 let currentData = '';
-let weatherCodeData;
+let weatherCodeData;            
     let baseUrl = "https://api.open-meteo.com/v1/forecast?"
 let params = "&current=relative_humidity_2m,is_day,rain,temperature_2m,wind_speed_10m,weather_code&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code"
 let daywisedata = "&past_days=15";
